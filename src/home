@@ -1,0 +1,177 @@
+client/
+├── public/
+│   └── index.html
+├── src/
+│
+│
+│── App.jsx
+│── main.jsx
+│── index.css                     ← Tailwind CSS + dark mode base styles
+│
+│
+├── pages/
+│   ├── Home/
+│   │   ├── HeroSection.jsx
+│   │   ├── WhyUrbanCustom.jsx
+│   │   ├── TopSellingJeeps.jsx
+│   │   ├── ThreeDViewer.jsx
+│   │   ├── Testimonials.jsx
+│   │   ├── HowItWorks.jsx
+│   │   ├── GalleryPreview.jsx
+│   │   ├── ContactForm.jsx
+│   │   ├── AboutWorkshop.jsx
+│   │   ├── InstagramFeed.jsx
+│   │   ├── HomePage.jsx             ← ⬅️ COMBINES all homepage sections  ✅
+│   │   └── homeData.js              ← Static headings/icons for Home
+│   │
+│   ├── Gallery/
+│   ├── Services/
+│   ├── Contact/
+│   ├── Admin/
+│   │   ├── AdminLogin.jsx
+│   │   └── AdminPanel.jsx
+│   └── NotFound.jsx
+│
+│
+├── components/
+│   ├── layout/
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   │   └── ThemeToggle.jsx         ← ⬅️ 🌙 Theme switch button  ✅
+│   │
+│   ├── common/
+│   │   ├── SectionTitle.jsx        ← Section headings everywhere
+│   │   ├── JeepCard.jsx
+│   │   ├── TestimonialCard.jsx
+│   │   ├── ScrollToTopButton.jsx
+│   │   ├── Loader.jsx
+│   │   └── ProtectedRoute.jsx      ← ⬅️ Admin login protection
+│
+│
+├── assets/
+│   ├── home/
+│   │   ├── hero-video.mp4
+│   │   ├── workshop-video.mp4
+│   │   ├── icons/
+│   │   └── jeep-thumbnails/
+│   └── global/
+│       ├── logo.svg
+│       └── fallback.jpg
+│
+│
+├── services/
+│   ├── galleryAPI.js
+│   ├── leadAPI.js
+│   ├── testimonialAPI.js
+│   └── authAPI.js
+│
+│
+├── context/
+│   ├── AdminContext.js
+│   └── ThemeContext.js            ← ⬅️ Dark/Light theme context  	✅
+│
+│
+├── hooks/
+│   ├── useFetch.js
+│   └── useScrollAnimation.js
+│
+│
+├── utils/
+│   ├── imageUploader.js
+│   ├── formatPrice.js
+│   └── generateSlug.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+client/
+└── src/
+    ├── assets/
+    │   └── home/
+    │       ├── icons/
+    │       ├── jeep-thumbnails/
+    │       ├── hero-video.mp4
+    │       └── workshop-video.mp4
+
+    ├── components/                  # Reusable components
+    │   ├── common/
+    │   │   ├── Navbar.jsx
+    │   │   ├── Footer.jsx
+    │   │   ├── SectionTitle.jsx
+    │   │   ├── JeepCard.jsx
+    │   │   ├── TestimonialCard.jsx
+    │   │   ├── ScrollToTopButton.jsx
+    │   │   └── ThemeToggle.jsx     # NEW: Light/Dark mode switcher
+    │   └── ui/
+    │       ├── Loader.jsx
+    │       └── Button.jsx          # NEW: Unified button
+
+    ├── context/
+    │   ├── AdminContext.js
+    │   └── ThemeContext.js         # NEW: Global theme control
+
+    ├── hooks/
+    │   ├── useFetch.js
+    │   └── useScrollAnimation.js
+
+    ├── layouts/
+    │   └── MainLayout.jsx          # NEW: Wraps pages with Navbar/Footer/Theme
+
+    ├── pages/
+    │   ├── Home/
+    │   │   ├── HeroSection.jsx
+    │   │   ├── WhyUrbanCustom.jsx
+    │   │   ├── TopSellingJeeps.jsx
+    │   │   ├── ThreeDViewer.jsx
+    │   │   ├── Testimonials.jsx
+    │   │   ├── HowItWorks.jsx
+    │   │   ├── GalleryPreview.jsx
+    │   │   ├── ContactForm.jsx
+    │   │   ├── AboutWorkshop.jsx
+    │   │   ├── InstagramFeed.jsx
+    │   │   ├── HomePage.jsx
+    │   │   └── homeData.js
+    │   ├── .jsx Admin/
+    │   │   ├── AdminLogin.jsx      # NEW: Admin login page
+    │   │   ├── AdminDashboard.jsx
+    │   │   └── ProtectedRoute # NEW: Route guard for admin
+    │   └── Gallery/
+    │       └── GalleryPage.jsx     # Coming soon
+
+    ├── services/
+    │   ├── galleryAPI.js
+    │   ├── leadAPI.js
+    │   ├── testimonialAPI.js
+    │   └── authAPI.js
+
+    ├── utils/
+    │   ├── imageUploader.js
+    │   ├── formatPrice.js
+    │   └── generateSlug.js
+
+    ├── App.jsx
+    ├── main.jsx
+    └── index.css
+
+
+
+        └── Admin/
+            ├── AdminDashboard.jsx
+            ├── LeadList.jsx
+            ├── GalleryManager.jsx
+            ├── TestimonialManager.jsx
+            └── JeepManager.jsx       ← (optional future)
