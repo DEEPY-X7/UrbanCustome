@@ -5,19 +5,19 @@ import SectionTitle from "../common/SectionTitle";
 const features = [
   {
     image:
-      "https://res.cloudinary.com/dadp7h2k1/image/upload/v1751075912/high-impact-red-neon-wrench-cog-icon-with-dark-background_462839-2457_opfh1j.jpg",
+      "https://res.cloudinary.com/dadp7h2k1/image/upload/v1751075912/high-impact-red-neon-wrench-cog-icon-with-dark-background_462839-2457_opfh1j.jpg", // 🔧 Wrench Cog (Neon Red)
     title: "Precision Modifications",
     description: "Expert customization tailored for your dream off-road experience.",
   },
   {
     image:
-      "https://res.cloudinary.com/dadp7h2k1/image/upload/v1751081594/lock-icon-cyber-data-protection-600nw-2471541471_rm4v1s.jpg",
+      "https://res.cloudinary.com/dadp7h2k1/image/upload/v1751075531/Jeep_Grill_SVG_mfpxzr.png", // 🛡️ Jeep Grill Icon
     title: "Rugged Reliability",
     description: "Only the strongest builds with top-grade parts and quality assurance.",
   },
   {
     image:
-      "https://res.cloudinary.com/dadp7h2k1/image/upload/v1751082927/truck-jeep-icon-neon-fast-delivery_ghghd9.jpg", // 🔧 Optional: Add a custom delivery image here
+      "https://res.cloudinary.com/dadp7h2k1/image/upload/v1751081532/file_000000004be461f7a2661be5e69662ff_icxllq.png", // 📋 Step-by-step Icon
     title: "Pan India Delivery",
     description: "Get your modified Jeep/Thar delivered at your doorstep anywhere in India.",
   },
