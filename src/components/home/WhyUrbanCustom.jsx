@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import SectionTitle from "../common/SectionTitle";
+import { useTheme } from '../../context/ThemeContext';
 
 const features = [
   {
@@ -17,15 +18,24 @@ const features = [
   },
   {
     image:
-      "https://res.cloudinary.com/dadp7h2k1/image/upload/v1751082927/truck-jeep-icon-neon-fast-delivery_ghghd9.jpg", // 🔧 Optional: Add a custom delivery image here
+      "https://res.cloudinary.com/dadp7h2k1/image/upload/v1751082927/truck-jeep-icon-neon-fast-delivery_ghghd9.jpg",
     title: "Pan India Delivery",
     description: "Get your modified Jeep/Thar delivered at your doorstep anywhere in India.",
   },
 ];
 
 const WhyUrbanCustom = () => {
+  const { theme } = useTheme(); // 🧠 Hook to get current theme
+
+  const sectionBg = theme === 'dark' ? 'bg-[#121212]' : 'bg-gray-100';
+  const titleColor = theme === 'dark' ? 'text-white' : 'text-gray-900';
+  const subtitleColor = theme === 'dark' ? 'text-gray-300' : 'text-gray-700';
+  const cardBg = theme === 'dark' ? 'bg-neutral-900' : 'bg-white';
+  const cardTitle = theme === 'dark' ? 'text-white' : 'text-gray-800';
+  const cardDesc = theme === 'dark' ? 'text-gray-400' : 'text-gray-600';
+
   return (
-    <SectionTitle className="bg-gray-100 dark:bg-[#121212] py-20 px-6" id="why-us">
+    <SectionTitle className={`${sectionBg} py-20 px-6`} id="why-us">
       <div className="max-w-6xl mx-auto text-center">
         {/* 🔥 Section Heading */}
         <motion.h2
@@ -33,7 +43,7 @@ const WhyUrbanCustom = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-3xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white"
+          className={`text-3xl md:text-5xl font-bold mb-6 ${titleColor}`}
         >
           Why Choose UrbanCustom?
         </motion.h2>
@@ -44,7 +54,7 @@ const WhyUrbanCustom = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="max-w-2xl mx-auto text-lg text-gray-700 dark:text-gray-300 mb-14"
+          className={`max-w-2xl mx-auto text-lg mb-14 ${subtitleColor}`}
         >
           We don’t just modify Jeeps — we craft iconic machines with soul, power, and performance.
         </motion.p>
@@ -58,7 +68,7 @@ const WhyUrbanCustom = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: index * 0.2 }}
-              className="bg-white dark:bg-neutral-900 rounded-xl shadow-md hover:shadow-xl transition p-6 text-left"
+              className={`${cardBg} rounded-xl shadow-md hover:shadow-xl transition p-6 text-left`}
             >
               {/* 🌟 Feature Image */}
               <img
@@ -68,12 +78,12 @@ const WhyUrbanCustom = () => {
               />
 
               {/* 🏷️ Feature Title */}
-              <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">
+              <h3 className={`text-xl font-semibold mb-2 ${cardTitle}`}>
                 {feature.title}
               </h3>
 
               {/* 🧾 Feature Description */}
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className={`${cardDesc}`}>
                 {feature.description}
               </p>
             </motion.div>

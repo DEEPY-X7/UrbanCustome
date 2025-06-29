@@ -2,18 +2,37 @@ import React from 'react';
 import clsx from 'clsx';
 import { useTheme } from '../../context/ThemeContext';
 
-const SectionWrapper = ({ children, bg = null, padding = 'py-20 px-4' }) => {
+/**
+ * SectionWrapper standardizes vertical spacing, theme-based backgrounds,
+ * and ensures scroll navigation behaves consistently across all sections.
+ */
+const SectionWrapper = ({
+  children,
+  bg = null,
+  padding = 'py-16 md:py-24 px-4',
+  id = '',
+  className = '',
+}) => {
   const { theme } = useTheme();
 
+  // Intelligent background fallback based on theme
   const themeBg =
     bg !== null
       ? bg
       : theme === 'dark'
-      ? 'bg-gray-950'
-      : 'bg-gray-100';
+      ? 'bg-[#0b0b0b]'
+      : 'bg-[#f8f9fa]';
 
   return (
-    <section className={clsx(themeBg, padding, 'transition-colors duration-500')}>
+    <section
+      id={id}
+      className={clsx(
+        themeBg,
+        padding,
+        'scroll-mt-24 transition-colors duration-500 ease-in-out',
+        className
+      )}
+    >
       <div className="max-w-7xl mx-auto">{children}</div>
     </section>
   );

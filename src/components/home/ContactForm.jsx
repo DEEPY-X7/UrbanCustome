@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import SectionWrapper from "../common/SectionWrapper";
+import { useTheme } from "../../context/ThemeContext"; // 👈 Theme hook
 
 const ContactForm = () => {
+  const { theme } = useTheme(); // 🌗 detect current theme
+
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [loading, setLoading] = useState(false);
 
@@ -34,8 +37,14 @@ const ContactForm = () => {
     }
   };
 
+  const sectionBg = theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black';
+  const inputBg = theme === 'dark' ? 'bg-gray-900 text-white border-gray-700' : 'bg-gray-100 text-black border-gray-300';
+  const buttonStyle = theme === 'dark'
+    ? 'bg-yellow-400 hover:bg-yellow-500 text-black'
+    : 'bg-black hover:bg-gray-800 text-white';
+
   return (
-    <SectionWrapper bg="bg-black text-white dark:bg-black dark:text-white" id="contact">
+    <SectionWrapper bg={sectionBg} id="contact">
       <div className="max-w-4xl mx-auto text-center">
         <motion.h2
           className="text-3xl md:text-5xl font-bold mb-8 uppercase tracking-wide"
@@ -56,7 +65,7 @@ const ContactForm = () => {
             value={form.name}
             onChange={handleChange}
             placeholder="Your Name"
-            className="p-3 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+            className={`p-3 rounded border focus:outline-none focus:ring-2 focus:ring-yellow-400 ${inputBg}`}
             required
           />
           <input
@@ -65,7 +74,7 @@ const ContactForm = () => {
             value={form.email}
             onChange={handleChange}
             placeholder="Your Email"
-            className="p-3 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+            className={`p-3 rounded border focus:outline-none focus:ring-2 focus:ring-yellow-400 ${inputBg}`}
             required
           />
           <input
@@ -74,7 +83,7 @@ const ContactForm = () => {
             value={form.phone}
             onChange={handleChange}
             placeholder="Your Phone"
-            className="p-3 rounded bg-gray-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+            className={`p-3 rounded border focus:outline-none focus:ring-2 focus:ring-yellow-400 ${inputBg}`}
           />
           <textarea
             name="message"
@@ -82,13 +91,13 @@ const ContactForm = () => {
             onChange={handleChange}
             placeholder="Your Message"
             rows="4"
-            className="p-3 rounded bg-gray-900 text-white border border-gray-700 md:col-span-2 focus:outline-none focus:ring-2 focus:ring-primary"
+            className={`p-3 rounded border md:col-span-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 ${inputBg}`}
             required
           ></textarea>
 
           <motion.button
             type="submit"
-            className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 px-6 rounded md:col-span-2 transition"
+            className={`font-semibold py-3 px-6 rounded md:col-span-2 transition ${buttonStyle}`}
             disabled={loading}
             whileTap={{ scale: 0.95 }}
           >
