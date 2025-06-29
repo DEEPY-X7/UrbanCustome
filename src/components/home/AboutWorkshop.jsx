@@ -2,17 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import SectionWrapper from "../common/SectionWrapper";
 import SectionTitle from "../common/SectionTitle";
-import { useTheme } from "../../context/ThemeContext"; // Theme hook
 
 const AboutWorkshop = () => {
-  const { theme } = useTheme(); // 🌙 Detect current theme
-
-  const sectionBg = theme === "dark" ? "bg-black text-white" : "bg-white text-black";
-  const highlightColor = theme === "dark" ? "text-yellow-400" : "text-orange-600";
-  const subTextColor = theme === "dark" ? "text-gray-400" : "text-gray-600";
-
   return (
-    <SectionWrapper bg={sectionBg} id="workshop">
+    <SectionWrapper bg="bg-black text-white">
       {/* Title Section */}
       <SectionTitle
         title="Inside Our Workshop"
@@ -41,7 +34,7 @@ const AboutWorkshop = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h3 className={`text-2xl font-semibold mb-4 ${highlightColor}`}>
+          <h3 className="text-2xl font-semibold mb-4 text-orange-500">
             Why Urban Custom?
           </h3>
           <p className="text-base leading-relaxed mb-4">
@@ -49,7 +42,7 @@ const AboutWorkshop = () => {
             With cutting-edge tools, a dedicated team of engineers, and a relentless passion for excellence,
             we design and deliver modifications that turn heads across India.
           </p>
-          <p className={`text-sm ${subTextColor}`}>
+          <p className="text-sm text-gray-400">
             From paint to performance — your dream ride is engineered here.
           </p>
         </motion.div>

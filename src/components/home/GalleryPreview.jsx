@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import SectionWrapper from '../common/SectionWrapper';
-import { useTheme } from '../../context/ThemeContext';
 
 const sampleGallery = [
   {
@@ -20,22 +19,14 @@ const sampleGallery = [
 ];
 
 const GalleryPreview = () => {
-  const { theme } = useTheme(); // 🌗 Access current theme
-
-  const sectionBg = theme === 'dark' ? 'bg-black' : 'bg-white';
-  const headingColor = theme === 'dark' ? 'text-white' : 'text-black';
-  const cardBg = theme === 'dark' ? 'bg-gray-900 border border-gray-700' : 'bg-white shadow-lg';
-  const cardTitle = theme === 'dark' ? 'text-white' : 'text-black';
-  const buttonBg = theme === 'dark' ? 'bg-white text-black hover:bg-gray-200' : 'bg-black text-white hover:bg-gray-800';
-
   return (
-    <SectionWrapper bg={sectionBg} id="gallery">
+    <SectionWrapper bg="bg-white dark:bg-black" id="gallery">
       <div className="max-w-6xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className={`text-3xl md:text-5xl font-bold mb-10 uppercase tracking-wide ${headingColor}`}
+          className="text-3xl md:text-5xl font-bold mb-10 text-black dark:text-white uppercase tracking-wide"
         >
           Explore Our Masterpieces
         </motion.h2>
@@ -44,7 +35,7 @@ const GalleryPreview = () => {
           {sampleGallery.map((item, index) => (
             <motion.div
               key={index}
-              className={`rounded-xl overflow-hidden transition hover:shadow-2xl ${cardBg}`}
+              className="rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition dark:bg-gray-900 dark:border dark:border-gray-700"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -55,9 +46,7 @@ const GalleryPreview = () => {
                 className="w-full h-60 object-cover"
               />
               <div className="p-4">
-                <h3 className={`text-lg font-semibold ${cardTitle}`}>
-                  {item.title}
-                </h3>
+                <h3 className="text-lg font-semibold text-black dark:text-white">{item.title}</h3>
               </div>
             </motion.div>
           ))}
@@ -65,7 +54,7 @@ const GalleryPreview = () => {
 
         <Link
           to="/gallery"
-          className={`inline-block mt-10 px-6 py-2 rounded-full text-sm font-medium transition ${buttonBg}`}
+          className="inline-block mt-10 text-white bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 px-6 py-2 rounded-full text-sm font-medium transition"
         >
           View Full Gallery
         </Link>

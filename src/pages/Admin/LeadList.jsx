@@ -15,8 +15,8 @@ const LeadList = () => {
 
   const fetchLeads = async () => {
     try {
-      const res = await getLeads();
-      setLeads(res?.data || []);
+      const response = await getLeads();
+      setLeads(response?.data || []);
     } catch (error) {
       alert('❌ Failed to fetch leads.');
     } finally {
@@ -25,43 +25,37 @@ const LeadList = () => {
   };
 
   const handleDelete = async (id) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this lead?');
-    if (!confirmDelete) return;
-
+    if (!window.confirm('Are you sure you want to delete this lead?')) return;
     try {
       await deleteLead(id);
       setLeads((prev) => prev.filter((lead) => lead._id !== id));
-    } catch {
+    } catch (err) {
       alert('❌ Failed to delete lead.');
     }
   };
 
   const downloadCSV = () => {
     if (leads.length === 0) return alert('No leads to export.');
-
-    const headers = ['Name', 'Email', 'Message', 'Date'];
-    const rows = leads.map(({ name, email, message, createdAt }) => [
-      name,
-      email,
-      `"${message}"`,
-      new Date(createdAt).toLocaleString()
+    const header = ['Name', 'Email', 'Message', 'Date'];
+    const rows = leads.map((l) => [
+      l.name, l.email, `"${l.message}"`, new Date(l.createdAt).toLocaleString()
     ]);
+    const csvContent = [header, ...rows].map((e) => e.join(',')).join('\n');
 
-    const csv = [headers, ...rows].map(row => row.join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
 
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `user-leads-${Date.now()}.csv`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `user-leads-${Date.now()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
-  const filteredLeads = leads.filter(({ name, email }) =>
-    name.toLowerCase().includes(search.toLowerCase()) ||
-    email.toLowerCase().includes(search.toLowerCase())
+  const filteredLeads = leads.filter((lead) =>
+    lead.name.toLowerCase().includes(search.toLowerCase()) ||
+    lead.email.toLowerCase().includes(search.toLowerCase())
   );
 
   if (!isAuthenticated) return <p className="text-center py-10">🚫 Access Denied</p>;
@@ -89,8 +83,8 @@ const LeadList = () => {
 
       <div className="overflow-x-auto border border-border rounded-lg">
         <table className="w-full table-auto border-collapse">
-          <thead className="bg-muted text-sm">
-            <tr>
+          <thead className="bg-muted">
+            <tr className="text-left text-sm">
               <th className="p-3 border border-border">Name</th>
               <th className="p-3 border border-border">Email</th>
               <th className="p-3 border border-border">Message</th>
@@ -99,24 +93,23 @@ const LeadList = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredLeads.length > 0 ? (
-              filteredLeads.map(({ _id, name, email, message, createdAt }) => (
-                <tr key={_id} className="hover:bg-accent">
-                  <td className="p-3 border border-border">{name}</td>
-                  <td className="p-3 border border-border">{email}</td>
-                  <td className="p-3 border border-border">{message}</td>
-                  <td className="p-3 border border-border">{new Date(createdAt).toLocaleString()}</td>
-                  <td className="p-3 border border-border text-center">
-                    <button
-                      onClick={() => handleDelete(_id)}
-                      className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
+            {filteredLeads.map((lead) => (
+              <tr key={lead._id} className="hover:bg-accent">
+                <td className="p-3 border border-border">{lead.name}</td>
+                <td className="p-3 border border-border">{lead.email}</td>
+                <td className="p-3 border border-border">{lead.message}</td>
+                <td className="p-3 border border-border">{new Date(lead.createdAt).toLocaleString()}</td>
+                <td className="p-3 border border-border text-center">
+                  <button
+                    onClick={() => handleDelete(lead._id)}
+                    className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 text-sm"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+            {filteredLeads.length === 0 && (
               <tr>
                 <td colSpan="5" className="p-4 text-center text-muted-foreground">
                   No leads found.
@@ -131,3 +124,4 @@ const LeadList = () => {
 };
 
 export default LeadList;
+       

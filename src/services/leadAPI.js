@@ -1,3 +1,5 @@
+// src/services/leadAPI.js
+
 import axios from 'axios';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/leads';
@@ -52,11 +54,6 @@ export const deleteLead = async (id, token) => {
     handleError('Deleting lead failed', error);
   }
 };
-
-/**
- * 🧾 Alias: getLeads → same as getAllLeads (for consistency in frontend code)
- */
-export const getLeads = getAllLeads;
 
 /**
  * 📛 Central Error Logger

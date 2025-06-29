@@ -5,7 +5,7 @@
  * @param {File} file - The image file to upload
  * @returns {Promise<string>} - Secure Cloudinary image URL
  */
-export const uploadImageToCloudinary = async (file) => {
+export const imageUploader = async (file) => {
   try {
     if (!file) throw new Error('No file provided');
 

@@ -1,26 +1,12 @@
-// src/App.jsx
-import React from 'react';
+import React from 'react'
+import HomePage from './pages/HomePage'
 
-import ThemeWrapper from './context/ThemeWrapper';
-import AppRoutes from './routes/Routes';
-
-import Navbar from './components/common/Navbar';
-import Footer from './components/common/Footer';
-import ScrollToTopButton from './components/common/ScrollToTopButton';
-
-const App = () => {
+function App() {
   return (
-    <ThemeWrapper>
-      <div className="min-h-screen font-sans transition-colors duration-300 bg-white dark:bg-[#111] text-gray-900 dark:text-white">
-        <Navbar />
-        <main className="flex-grow">
-          <AppRoutes />
-        </main>
-        <Footer />
-        <ScrollToTopButton />
-      </div>
-    </ThemeWrapper>
-  );
-};
+    <div>
+      <HomePage/>
+    </div>
+  )
+}
 
-export default App;
+export default App
